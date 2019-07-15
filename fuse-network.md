@@ -11,6 +11,28 @@
 ```docker push fusenetwork/fusenet```
 
 ### Bootnode
+
+##### VM specs
+* OS - `Linux (ubuntu 18.04)`
+* Size - `Standard B2ms (2 vcpus, 8 GiB memory)`
+* Disk - `30 GiB Premium SSD`
+* Networking
+
+```
+| Priority 	| Description                    	| Port  	| Protocol 	| Source                  	| Destination    	| Action 	|
+|----------	|--------------------------------	|-------	|----------	|-------------------------	|----------------	|--------	|
+| 1000     	| ssh	                            | 22    	| TCP      	| ip list comma-separated 	| Any            	| Allow  	|
+| 1001     	| p2p                            	| 30303 	| TCP      	| Any                     	| Any            	| Allow  	|
+| 1002     	| p2p udp                        	| 30303 	| UDP      	| Any                     	| Any            	| Allow  	|
+| 1003     	| rpc                            	| 8545  	| TCP      	| Any                     	| Any            	| Allow  	|
+| 1004     	| https                          	| 443   	| TCP      	| Any                     	| Any            	| Allow  	|
+| 1005     	| http                           	| 80    	| TCP      	| Any                     	| Any            	| Allow  	|
+| 65000    	| AllowVnetInBound               	| Any   	| Any      	| VirtualNetwork          	| VirtualNetwork 	| Allow  	|
+| 65001    	| AllowAzureLoadBalancerInBound  	| Any   	| Any      	| AzureLoadBalancer       	| Any            	| Allow  	|
+| 65500    	| DenyAllInBound                 	| Any   	| Any      	| Any                     	| Any            	| Deny   	|
+```
+
+##### Run
 ```
 # start
 sudo ./quickstart.sh --role bootnode --node-key zeronet-bootnode-vm-<N>
@@ -20,6 +42,25 @@ docker run -ti -v /home/fuse/fusenet/database:/data -v /home/fuse/fusenet/config
 ```
 
 ### MasterOfCeremony / Validator
+
+##### VM specs
+* OS - `Linux (ubuntu 18.04)`
+* Size - `Standard D2s v3 (2 vcpus, 8 GiB memory)`
+* Disk - `30 GiB Premium SSD`
+* Networking
+
+```
+| Priority 	| Description                    	| Port  	| Protocol 	| Source                  	| Destination    	| Action 	|
+|----------	|--------------------------------	|-------	|----------	|-------------------------	|----------------	|--------	|
+| 1000     	| ssh	                            | 22    	| TCP      	| ip list comma-separated 	| Any            	| Allow  	|
+| 1001     	| p2p                            	| 30303 	| TCP      	| Any                     	| Any            	| Allow  	|
+| 1002     	| p2p udp                        	| 30303 	| UDP      	| Any                     	| Any            	| Allow  	|
+| 65000    	| AllowVnetInBound               	| Any   	| Any      	| VirtualNetwork          	| VirtualNetwork 	| Allow  	|
+| 65001    	| AllowAzureLoadBalancerInBound  	| Any   	| Any      	| AzureLoadBalancer       	| Any            	| Allow  	|
+| 65500    	| DenyAllInBound                 	| Any   	| Any      	| Any                     	| Any            	| Deny   	|
+```
+
+##### Run
 ```
 # start
 sudo ./quickstart.sh --role validator
@@ -31,6 +72,11 @@ sudo docker run --detach --name fuseapp --volume /home/fuse/fusenet/config:/conf
 ```
 
 ### Explorer node
+
+##### VM specs
+Same as Bootnode
+
+##### Run
 ```
 # start
 sudo ./quickstart.sh --role explorer
@@ -52,6 +98,19 @@ chmod 777 quickstart.sh
 # delete the chain database
 sudo rm -rf fusenet/database
 ```
+
+## RPC
+
+Application Gateway
+
+##### Specs
+* Tier - `Standard`
+* SKU size - `small`
+* Instance count - `1`
+* HTTP/2 - `Disabled`
+* Backend pools - list of bootnode ips
+* HTTP settings - http - port 80 & https - port 443
+* Health probes - http://127.0.0.1/api/health & https://127.0.0.1/api/health
 
 ## App
 
