@@ -4,11 +4,11 @@
 
 ### Docker
 ##### Build
-```docker build -f docker/Dockerfile -t fusenetwork/fusenet .```
+```docker build -t fusenet/node .```
 ##### Pull
-```docker pull fusenetwork/fusenet```
+```docker pull fusenet/node```
 ##### Push
-```docker push fusenetwork/fusenet```
+```docker push fusenet/node```
 
 ### Bootnode
 
@@ -38,7 +38,7 @@
 sudo ./quickstart.sh --role bootnode --node-key zeronet-bootnode-vm-<N>
 
 # or, start docker manually
-docker run -ti -v /home/fuse/fusenet/database:/data -v /home/fuse/fusenet/config:/config/custom -p 30300:30300 -p 8545:8545 -p 8546:8546 fusenetwork/fusenet --role bootnode --parity-args --node-key bootnode<N>
+docker run -ti -v /home/fuse/fusenet/database:/data -v /home/fuse/fusenet/config:/config/custom -p 30300:30300 -p 8545:8545 -p 8546:8546 fusenet/node --role bootnode --parity-args --node-key bootnode<N>
 ```
 
 ### MasterOfCeremony / Validator
@@ -66,9 +66,9 @@ docker run -ti -v /home/fuse/fusenet/database:/data -v /home/fuse/fusenet/config
 sudo ./quickstart.sh --role validator
 
 # or, start dockers manually
-sudo docker run --detach --name fusenet --volume /home/fuse/fusenet/database:/data --volume /home/fuse/fusenet/config:/config/custom -p 30303:30300 --restart=on-failure fusenetwork/fusenet --role validator --address <address>
+sudo docker run --detach --name fusenet --volume /home/fuse/fusenet/database:/data --volume /home/fuse/fusenet/config:/config/custom -p 30303:30300 --restart=on-failure fusenet/node --role validator --address <address>
 
-sudo docker run --detach --name fuseapp --volume /home/fuse/fusenet/config:/config --restart=on-failure fusenetwork/fuseapp
+sudo docker run --detach --name fuseapp --volume /home/fuse/fusenet/config:/config --restart=on-failure fusenet/validator-app
 ```
 
 ### Explorer node
@@ -82,7 +82,7 @@ Same as Bootnode
 sudo ./quickstart.sh --role explorer
 
 # or, start docker manually
-sudo docker run --detach --name fusenet --volume /home/fuse/fusenet/database:/data --volume /home/fuse/fusenet/config:/config/custom -p 30303:30300 -p 8545:8545 -p 8546:8546 --restart=on-failure fusenetwork/fusenet --role explorer --parity-args --node-key zeronet-explorer-vm
+sudo docker run --detach --name fusenet --volume /home/fuse/fusenet/database:/data --volume /home/fuse/fusenet/config:/config/custom -p 30303:30300 -p 8545:8545 -p 8546:8546 --restart=on-failure fusenet/node --role explorer --parity-args --node-key zeronet-explorer-vm
 ```
 
 ### Network reset
@@ -116,11 +116,11 @@ Application Gateway
 
 ### Docker
 ##### Build
-```docker build -f docker/Dockerfile -t fusenetwork/fuseapp .```
+```docker build -t fusenet/validator-app .```
 ##### Pull
-```docker pull fusenetwork/fuseapp```
+```docker pull fusenet/validator-app```
 ##### Push
-```docker push fusenetwork/fuseapp```
+```docker push fusenet/validator-app```
 
 #### Run locally
 ```
@@ -132,7 +132,7 @@ docker run \
 --env POLLING_INTERVAL=1000 \
 --env RPC=http://127.0.0.1:8545 \
 --restart=on-failure \
-fusenetwork/fuseapp
+fusenet/validator-app
 
 # as script
 # from the `app` folder
