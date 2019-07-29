@@ -41,7 +41,7 @@ ETHEREUM_JSONRPC_WS_URL=ws://127.0.0.1:8546
 ##### Run
 
 ```
-git clone https://github.com/ColuLocalNetwork/blockscout.git
+git clone https://github.com/fuseio/blockscout.git
 
 cd blockscout
 

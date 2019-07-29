@@ -92,7 +92,7 @@ sudo ./clean-docker.sh
 
 # update quickstart script if needed 
 rm -rf quickstart.sh
-wget -O quickstart.sh https://raw.githubusercontent.com/ColuLocalNetwork/fuse-network/dev/scripts/quickstart.sh
+wget -O quickstart.sh https://raw.githubusercontent.com/fuseio/fuse-network/dev/scripts/quickstart.sh
 chmod 777 quickstart.sh
 
 # delete the chain database
