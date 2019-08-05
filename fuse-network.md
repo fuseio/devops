@@ -10,7 +10,7 @@
 ##### Push
 ```docker push fusenet/node```
 
-### Bootnode
+### Node
 
 ##### VM specs
 * OS - `Linux (ubuntu 18.04)`
@@ -35,10 +35,10 @@
 ##### Run
 ```
 # start
-sudo ./quickstart.sh --role bootnode --node-key zeronet-bootnode-vm-<N>
+sudo ./quickstart.sh --role node --node-key fusenet-node-vm-<N>
 
 # or, start docker manually
-docker run -ti -v /home/fuse/fusenet/database:/data -v /home/fuse/fusenet/config:/config/custom -p 30300:30300 -p 8545:8545 -p 8546:8546 fusenet/node --role bootnode --parity-args --node-key bootnode<N>
+docker run -ti -v /home/fuse/fusenet/database:/data -v /home/fuse/fusenet/config:/config/custom -p 30300:30300 -p 8545:8545 -p 8546:8546 fusenet/node --role node --parity-args --node-key node<N>
 ```
 
 ### MasterOfCeremony / Validator
@@ -74,7 +74,7 @@ sudo docker run --detach --name fuseapp --volume /home/fuse/fusenet/config:/conf
 ### Explorer node
 
 ##### VM specs
-Same as Bootnode
+Same as Node
 
 ##### Run
 ```
@@ -82,7 +82,7 @@ Same as Bootnode
 sudo ./quickstart.sh --role explorer
 
 # or, start docker manually
-sudo docker run --detach --name fusenet --volume /home/fuse/fusenet/database:/data --volume /home/fuse/fusenet/config:/config/custom -p 30303:30300 -p 8545:8545 -p 8546:8546 --restart=on-failure fusenet/node --role explorer --parity-args --node-key zeronet-explorer-vm
+sudo docker run --detach --name fusenet --volume /home/fuse/fusenet/database:/data --volume /home/fuse/fusenet/config:/config/custom -p 30303:30300 -p 8545:8545 -p 8546:8546 --restart=on-failure fusenet/node --role explorer --parity-args --node-key fusenet-explorer-vm
 ```
 
 ### Network reset
