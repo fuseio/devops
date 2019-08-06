@@ -41,7 +41,7 @@ sudo add-apt-repository ppa:certbot/certbot
 
 sudo apt-get update && sudo apt-get install certbot python-certbot-nginx
 
-sudo certbot certonly --manual -d <DOMAIN_NAME> --preferred-challenges=dns --email devops@fuse.io --register --agree-tos
+sudo certbot certonly --manual -d <DOMAIN_NAME> --preferred-challenges=dns --email devops@fusenet.io --register --agree-tos
 
 cd /etc/nginx/sites-available
 

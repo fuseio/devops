@@ -75,9 +75,9 @@ sudo \
 NETWORK=Fuse \
 LOGO=/images/fuse_logo.svg \
 ETHEREUM_JSONRPC_VARIANT=parity \
-ETHEREUM_JSONRPC_HTTP_URL=https://znet-explorer-node.fuse.io \
-ETHEREUM_JSONRPC_TRACE_URL=https://znet-explorer-node.fuse.io \
-ETHEREUM_JSONRPC_WS_URL=wss://znet-explorer-node.fuse.io/ws \
+ETHEREUM_JSONRPC_HTTP_URL=https://explorer-node.fusenet.io \
+ETHEREUM_JSONRPC_TRACE_URL=https://explorer-node.fusenet.io \
+ETHEREUM_JSONRPC_WS_URL=wss://explorer-node.fusenet.io/ws \
 DB_HOST=<server-name>:5432 \
 DB_NAME=explorer \
 DB_USER=<user> \
@@ -88,9 +88,9 @@ sudo \
 NETWORK=Fuse \
 LOGO=/images/fuse_logo.svg \
 ETHEREUM_JSONRPC_VARIANT=parity \
-ETHEREUM_JSONRPC_HTTP_URL=https://znet-explorer-node.fuse.io \
-ETHEREUM_JSONRPC_TRACE_URL=https://znet-explorer-node.fuse.io \
-ETHEREUM_JSONRPC_WS_URL=wss://znet-explorer-node.fuse.io/ws \
+ETHEREUM_JSONRPC_HTTP_URL=https://explorer-node.fusenet.io \
+ETHEREUM_JSONRPC_TRACE_URL=https://explorer-node.fusenet.io \
+ETHEREUM_JSONRPC_WS_URL=wss://explorer-node.fusenet.io/ws \
 DB_HOST=<server-name>:5432 \
 DB_NAME=explorer \
 DB_USER=<user> \
